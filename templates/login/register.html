@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    register
+{% endblock %}
+
+{% block header %}
+    <h1>Registrate Now</h1>
+{% endblock %}
+
+{% block content %}
+    <div class="row justify-content-md-center">
+        <div class="col-md-6">
+            <form method="post">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="Username" class="form-label">Username</label>
+{#                    <input name="username" type="text" autocomplete="off" class="form-control" id="Username" placeholder="Username">#}
+                      {{ form.username }}
+                </div>
+                <div class="mb-3">
+                    <label for="password1" class="form-label">Password</label>
+{#                    <input name="password" type="password" autocomplete="off" class="form-control" id="password1"#}
+{#                           placeholder="password">#}
+                    {{ form.password1 }}
+                </div>
+                <div class="mb-3">
+                    <label for="password2" class="form-label">Password</label>
+{#                    <input name="password" type="password" autocomplete="off" class="form-control" id="password2"#}
+{#                           placeholder="confirm password">#}
+                    {{ form.password2 }}
+                </div>
+                <div class="mt-3 d-grid col-6 mx-auto gap-2" >
+                    <button class="btn btn-primary">Registrate</button>
+                    <a href="/" class="btn btn-secondary">Cancel</a>
+                </div>
+                <h4>
+                    If you already have an account <a href="{% url 'login' %}">login</a>
+                </h4>
+            </form>
+        </div>
+    </div>
+{% endblock %}o %}

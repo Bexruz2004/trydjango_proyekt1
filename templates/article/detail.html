@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    About article
+{% endblock %}
+{#        <input type="search" autocomplete="off" placeholder="search there.." name="q">#}
+{#        <button type="submit"> search </button>#}
+{#        <span>{{ article }}</span>#}
+
+{% block content %}
+    <h1>Article Detail</h1>
+    <br>
+    <div class="card" style="width: 18rem;">
+        {% if article.image %}
+            <img src="{{ article.image.url }}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                    card's
+                    content.</p>
+            </div>
+        {% endif %}
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">{{ article.title }}</li>
+            <li class="list-group-item">{{ article.content }}</li>
+            <li class="list-group-item">
+                <code>
+                    {{ article.post_time }}
+                </code>
+            </li>
+        </ul>
+        <div class="card-body">
+            <a class="btn btn-success" href="{% url 'change' article.slug %}" >Change</a>
+            <a  class="btn btn-danger" href="{% url 'delete' article.slug %}" >Delete</a>
+        </div>
+    </div>
+    <br>
+{#    <h2>#}
+{#        {% if article.image %}#}
+{#            <img src="{{ article.image.url }}" width="30%">#}
+{#        {% endif %}#}
+{#        <br>#}
+{#        {{ article.content }}#}
+{#    </h2>#}
+{##}
+{#    <br>#}
+{#    <br>#}
+    {#        <a href="{% url 'info' %}">Info</a>#}
+{#    <h2><a class="btn btn-success" href="{% url 'list' %}">List</a></h2>#}
+{#    <h2><a class="btn btn-danger" href="{% url "delete" article.id %}">Delete</a></h2>#}
+{% endblock %}

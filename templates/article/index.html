@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load static %}
+{% block header %}
+    <h1>{{ block.super }}</h1>
+{% endblock %}
+
+
+
+{% block content %}
+{#    <container>#}
+        <h1>Article list</h1>
+        <form action="{% url 'list' %}" method="get">
+{##}
+{#            <input type="search" autocomplete="off" placeholder="search there.." name="q">#}
+{#            <button class="btn btn-info" type="submit"> search </button>#}
+{#            <span>{{ articles.count }}/{{ t }} object(s)</span>#}
+{#            <br>#}
+
+        <div class="row">
+            <div class="col-md-4">
+                <div  class="input-group mb-3">
+                    <input type="search" class="form-control" maxlength=10px autocomplete="off" placeholder="search there..." name="q" aria-describedby="button-addon2">
+                    <button class="btn btn-info" type="submit" id="button-addon2">Search</button>
+                </div>
+            </div>
+        </div>
+
+        </form>
+
+
+{#    </container>#}
+<div class="row">
+    <div class="col-md-4">
+        <ul  class="list-group list-group-flush">
+            {% for article in articles %}
+{#                <a href="{% url 'list' %}">#}
+{#                <a href="{% url 'info' article.id%}">Info</a>#}
+                <il class="list-group-item">
+                    <a href="{% url 'info' article.slug %}">
+                        <h2>
+                            {{ article.title }}
+                            ({{ article.id }})//
+                            <span><a class="btn btn-primary" href="{% url "change" article.slug%}">Change</a></span>
+                        </h2>
+                    </a>
+                </il>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}
+

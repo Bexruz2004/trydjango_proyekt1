@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ block.super }}
+{% endblock %}
+
+
+{% block content %}
+    <h1>Create Article</h1>
+
+    {% if created %}
+        <h1>Article Detail</h1>
+        <br>
+        <div class="card" style="width: 18rem;">
+            {% if object.image %}
+                <img src="{{ object.image.url }}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's
+                        content.</p>
+                </div>
+            {% endif %}
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">{{ object.title }}</li>
+                <li class="list-group-item">{{ object.content }}</li>
+                <li class="list-group-item">
+                    <code>
+                        {{ object.post_time }}
+                    </code>
+                </li>
+            </ul>
+            <div class="card-body">
+                <a class="btn btn-success" href="{% url 'change' object.slug %}">Change</a>
+                <a class="btn btn-danger" href="{% url 'delete' object.slug %}">Delete</a>
+            </div>
+        </div>
+        <br>
+
+    {% else %}
+        <div>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div>
+
+                    <div>
+                        <label for="title">Title:</label>
+                    </div>
+
+                    <div>
+                        <input class="form-control" type="text" id="title" name="title" placeholder="title">
+                    </div>
+
+                </div>
+                <br>
+                <div>
+
+                    <div>
+                        <label for="content">Content:</label>
+                    </div>
+
+                    <div>
+                        <textarea class="form-control" name="content" id="content" placeholder="content" cols="60"
+                                  rows="5"></textarea>
+                    </div>
+
+                </div>
+
+                <label for="image">Image:</label>
+                <input type="file" name="image" id="image" accept="image/*">
+
+
+                <br>
+
+                <div>
+                    <button class="btn btn-primary" type="submit">Save</button>
+                </div>
+
+            </form>
+
+        </div>
+
+    {% endif %}
+{% endblock %}

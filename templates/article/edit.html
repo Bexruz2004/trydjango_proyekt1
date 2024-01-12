@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+
+
+{% block title %}
+    Article change
+{% endblock %}
+
+{% block header %}
+    {{ block.super }}
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-4">
+            <h1>Article Change</h1>
+            <div>
+            <span>
+                <a href="{% url 'list' %}">Article</a>
+            </span>
+                <span>Article change</span>
+            </div>
+            <div>
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                        <code class="text-black">Created_date:{{ object.post_time }} </code>
+                    <br><br><br>
+                    <button class="btn btn-primary" type="submit">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

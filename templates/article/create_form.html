@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ block.super }}
+{% endblock %}
+
+
+{% block content %}
+    <h1>Create article with a form</h1>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="input-group mb-3">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <div class="d-grid gap-2 col-6 mx-auto">
+                        <button class="btn btn-primary" type="submit">Save</button>
+                        <input type="reset" class="btn btn-warning" value="Clear">
+                        <a href="{% url "list" %}" class="btn btn-secondary">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
